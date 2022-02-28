@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous"
+        referrerpolicy="no-referrer"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: 'Prompt', sans-serif;
+            background: #0052D4;
+            display: flex;
+            justify-content: center;
+            align-items: start;
+            /* fallback for old browsers */
+            /* background: -webkit-linear-gradient(to top, #6FB1FC, #4364F7, #0052D4); */
+            /* Chrome 10-25, Safari 5.1-6 */
+            /* background: linear-gradient(to top, #6FB1FC, #4364F7, #0052D4); */
+            /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+        }
+
+
+        .form-select,
+        .form-control {
+            border-radius: 3rem;
+            border: none;
+            outline: none;
+            box-shadow: none;
+            text-align-last: center;
+            text-align: center;
+            font-size: 1.2rem;
+        }
+
+
+        label {
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .submit-btn {
+
+            border-radius: 3rem;
+            border: none;
+            outline: none;
+            box-shadow: none;
+            color: black;
+            font-weight: bold;
+            font-size: 1.2rem;
+            padding: 0.5rem;
+            cursor: pointer;
+            width: 200px;
+        }
+
+        .submit-btn:hover {
+            font-size: 1.4rem;
+        }
+
+        .for-member {
+            display: none;
+        }
+    </style>
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="main-div">
+        <section>
+            <p class="display-4 text-center text-light mt-2">ตัวกรอง</p>
+        </section>
+        <section>
+            <div class="container-fluid px-5 main-container">
+                <form id="main-form">
+                    <div class="row">
+                        <div class="col-md-4 text-center mt-3">
+                            <label for="nationality">สัญชาติ</label>
+                            <select name="nationality" id="nationality" class="form-select">
+                                <option value="" disabled selected>เลือกสัญชาติ</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4 text-center mt-3 for-member">
+                            <label for="teaching-level">ระดับชั้นที่สอน</label>
+                            <select name="teaching-level" id="teaching-level" class="form-select">
+                                <option value="" disabled selected>เลือกระดับชั้นที่สอน</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4 text-center mt-3">
+                            <label for="teaching-subject">วิชาที่สอน</label>
+                            <select name="teaching-subject" id="teaching-subject" class="form-select">
+                                <option value="" disabled selected>เลือกวิชาที่สอน</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4 text-center mt-3">
+                            <label for="gender">เพศ</label>
+                            <select name="gender" id="gender" class="form-select">
+                                <option value="" disabled selected>เลือกเพศ</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4 text-center mt-3 for-member">
+                            <label for="gender">จังหวัดที่ตั้งโรงเรียน</label>
+                            <select type="text" id="province" name="province" class="form-select">
+                                <option value="" selected disabled>เลือกจังหวัด</option>
+                                <option value="กระบี่">กระบี่</option>
+                                <option value="กรุงเทพมหานคร">กรุงเทพมหานคร</option>
+                                <option value="กาญจนบุรี">กาญจนบุรี</option>
+                                <option value="กาฬสินธุ์">กาฬสินธุ์</option>
+                                <option value="กำแพงเพชร">กำแพงเพชร</option>
+                                <option value="ขอนแก่น">ขอนแก่น</option>
+                                <option value="จันทบุรี">จันทบุรี</option>
+                                <option value="ฉะเชิงเทรา">ฉะเชิงเทรา</option>
+                                <option value="ชลบุรี">ชลบุรี</option>
+                                <option value="ชัยนาท">ชัยนาท</option>
+                                <option value="ชัยภูมิ">ชัยภูมิ</option>
+                                <option value="ชุมพร">ชุมพร</option>
+                                <option value="เชียงราย">เชียงราย</option>
+                                <option value="เชียงใหม่">เชียงใหม่</option>
+                                <option value="ตรัง">ตรัง</option>
+                                <option value="ตราด">ตราด</option>
+                                <option value="ตาก">ตาก</option>
+                                <option value="นครนายก">นครนายก</option>
+                                <option value="นครปฐม">นครปฐม</option>
+                                <option value="นครพนม">นครพนม</option>
+                                <option value="นครราชสีมา">นครราชสีมา</option>
+                                <option value="นครศรีธรรมราช">นครศรีธรรมราช</option>
+                                <option value="นครสวรรค์">นครสวรรค์</option>
+                                <option value="นนทบุรี">นนทบุรี</option>
+                                <option value="นราธิวาส">นราธิวาส</option>
+                                <option value="น่าน">น่าน</option>
+                                <option value="บึงกาฬ">บึงกาฬ</option>
+                                <option value="บุรีรัมย์">บุรีรัมย์</option>
+                                <option value="ปทุมธานี">ปทุมธานี</option>
+                                <option value="ประจวบคีรีขันธ์">ประจวบคีรีขันธ์</option>
+                                <option value="ปราจีนบุรี">ปราจีนบุรี</option>
+                                <option value="ปัตตานี">ปัตตานี</option>
+                                <option value="พระนครศรีอยุธยา">พระนครศรีอยุธยา</option>
+                                <option value="พะเยา">พะเยา</option>
+                                <option value="พังงา">พังงา</option>
+                                <option value="พัทลุง">พัทลุง</option>
+                                <option value="พิจิตร">พิจิตร</option>
+                                <option value="พิษณุโลก">พิษณุโลก</option>
+                                <option value="เพชรบุรี">เพชรบุรี</option>
+                                <option value="เพชรบูรณ์">เพชรบูรณ์</option>
+                                <option value="แพร่">แพร่</option>
+                                <option value="ภูเก็ต">ภูเก็ต</option>
+                                <option value="มหาสารคาม">มหาสารคาม</option>
+                                <option value="มุกดาหาร">มุกดาหาร</option>
+                                <option value="แม่ฮ่องสอน">แม่ฮ่องสอน</option>
+                                <option value="ยโสธร">ยโสธร</option>
+                                <option value="ยะลา">ยะลา</option>
+                                <option value="ร้อยเอ็ด">ร้อยเอ็ด</option>
+                                <option value="ระนอง">ระนอง</option>
+                                <option value="ระยอง">ระยอง</option>
+                                <option value="ราชบุรี">ราชบุรี</option>
+                                <option value="ลพบุรี">ลพบุรี</option>
+                                <option value="ลำปาง">ลำปาง</option>
+                                <option value="ลำพูน">ลำพูน</option>
+                                <option value="เลย">เลย</option>
+                                <option value="ศรีสะเกษ">ศรีสะเกษ</option>
+                                <option value="สกลนคร">สกลนคร</option>
+                                <option value="สงขลา">สงขลา</option>
+                                <option value="สตูล">สตูล</option>
+                                <option value="สมุทรปราการ">สมุทรปราการ</option>
+                                <option value="สมุทรสงคราม">สมุทรสงคราม</option>
+                                <option value="สมุทรสาคร">สมุทรสาคร</option>
+                                <option value="สระแก้ว">สระแก้ว</option>
+                                <option value="สระบุรี">สระบุรี</option>
+                                <option value="สิงห์บุรี">สิงห์บุรี</option>
+                                <option value="สุโขทัย">สุโขทัย</option>
+                                <option value="สุพรรณบุรี">สุพรรณบุรี</option>
+                                <option value="สุราษฎร์ธานี">สุราษฎร์ธานี</option>
+                                <option value="สุรินทร์">สุรินทร์</option>
+                                <option value="หนองคาย">หนองคาย</option>
+                                <option value="หนองบัวลำภู">หนองบัวลำภู</option>
+                                <option value="อ่างทอง">อ่างทอง</option>
+                                <option value="อำนาจเจริญ">อำนาจเจริญ</option>
+                                <option value="อุดรธานี">อุดรธานี</option>
+                                <option value="อุตรดิตถ์">อุตรดิตถ์</option>
+                                <option value="อุทัยธานี">อุทัยธานี</option>
+                                <option value="อุบลราชธานี">อุบลราชธานี</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4 text-center mt-3 for-member">
+                            <label for="salary">เงินเดือน</label>
+                            <select name="salary" id="salary" class="form-select">
+                                <option value="" disabled selected>เลือกระดับเงินเดือน</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4 text-center mt-3 for-member">
+                            <label for="startworking-date">วันที่ต้องการให้เริ่มงาน</label>
+                            <input type="text" name="startworking-date" id="startworking-date" class="form-control" placeholder="yyyy-MM-dd" onfocus="(this.type='date')" onblur="(this.type='text')">
+                        </div>
+
+                    </div>
+                    <div class="row mt-4 mb-5">
+                        <div class="col text-center">
+                            <button type="submit" class="btn btn-warning submit-btn">ตกลง</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </div>
+
+
+    <script>
+        var scripturl = 'https://script.google.com/macros/s/AKfycbxHpF8I_PK0WabmuSnx1i7CcuPHtUruzaO2ecaC6SNxDzJeV-nf-XmgVnmbOBmYhpYo/exec'
+        $(document).ready(function () {
+            $.LoadingOverlay("show", {
+                background: "rgba(36, 173, 243, 0.7)"
+            });
+            liff.init({ liffId: '1656895429-ekjYY9Do' })
+            liff.ready.then(() => {
+                if (!liff.isLoggedIn()) {
+                    liff.login();
+                } else {
+                    checkRegistStatus()
+                }
+            })
+        })
+        async function checkRegistStatus() {
+            let profile = await liff.getProfile()
+            let userId = profile.userId
+            // let userId = 'xxxx'
+            let url = scripturl + '?opt=checkregist&uid=' + userId
+            $.getJSON(url, function (res) {
+                console.log("🚀 ~ res", res)
+                $.LoadingOverlay("hide");
+                if (!res.ondemo) {
+                    return Swal.fire({
+                        title: 'คุณใช้สิทธิทดลองค้นหาครูไปแล้ว',
+                        html: 'หากต้องการค้นหาคุณครู กรุณาลงทะเบียน<br><a href="https://liff.line.me/1656895429-e1RQQZxY">คลิกเพื่อลงทะเบียน</a>',
+                        icon: 'error',
+                        allowOutsideClick: false,
+                        showConfirmButton: false,
+                    })
+                }
+                delete res.ondemo
+                setDropdownList(res)
+            })
+        }
+
+        function setDropdownList(res) {
+            Object.keys(res).forEach(function (key) {
+                if (key == 'member') {
+                    if (res.member) {
+                        $('.for-member').slideDown(200)
+                    }
+                    return
+                }
+                res[key].push('Not Specified')
+                res[key].forEach(function (item) {
+                    $('#' + key).append(`<option value="${item}">${item}</option>`)
+                })
+            })
+        }
+
+        $('#main-form').submit(function () {
+            event.preventDefault()
+            let formData = $(this).serializeArray()
+            let formobj = {}
+            formData.forEach(function (item) {
+                formobj[item.name] = item.value
+            })
+            let msg = '#ค้นหา'
+            Object.keys(formobj).forEach(function (key) {
+                console.log(key, formobj[key], formobj[key].length)
+                if (formobj[key] != 'Not Specified' && formobj[key] != 'Either female or male' && formobj[key] != 'Every Subjects' && formobj[key] != '' && formobj[key].length > 3) {
+                    msg += `\n>${key} : ${formobj[key]}`
+                }
+            })
+            liff.sendMessages([{
+                type: 'text',
+                text: msg
+            }]).then(function () {
+                liff.closeWindow()
+            }).catch(function (error) {
+                console.log(error)
+            })
+        })
+
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-loading-overlay@2.1.7/dist/loadingoverlay.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+
+</html>
