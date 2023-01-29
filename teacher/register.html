@@ -15,9 +15,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Prompt&display=swap" rel="stylesheet">
     <title>Teacher Registration</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             min-height: 100vh;
-            width: 100vw;
+
             margin: 0;
             display: flex;
             justify-content: center;
@@ -41,8 +47,8 @@
         }
 
         label {
-            color: white;
             font-size: 1.2rem;
+            color: #fff;
         }
 
         .submit-btn {
@@ -50,7 +56,6 @@
             border: none;
             outline: none;
             box-shadow: none;
-            color: black;
             font-weight: bold;
             font-size: 1.2rem;
             padding: 0.5rem;
@@ -88,12 +93,12 @@
                         WhatsApp WeChat or Facebook, pls fill "-" in the answer</p>
                     <div class="row justify-content-center">
                         <div class="col-md-4  text-center mt-3">
-                            <label for="name"><span><img alt="icon" src="https://img.icons8.com/fluency-systems-regular/20/ffffff/user.png" /></span> Fullname *</label>
+                            <label for="name"><span><img alt="icon" src="https://img.icons8.com/fluency-systems-regular/20/ffffff/user.png" /></span> Email *</label>
                             <input type="text" id="name" name="name" class="form-control">
                         </div>
                         <div class="col-md-4  text-center mt-3">
-                            <label for="lineid"><span><img alt="icon" src="https://img.icons8.com/windows/20/ffffff/line-me.png" /></span> Line ID</label>
-                            <input type="text" id="lineid" name="lineid" class="form-control">
+                            <label for="lineid"><span></span> Password(Birthdate)</label>
+                            <input type="date" id="lineid" name="lineid" class="form-control">
                         </div>
                     </div>
                     <div class="row justify-content-center">
@@ -122,20 +127,56 @@
                             <button type="submit" class="btn btn-warning submit-btn">Confirm</button>
                         </div>
                     </div>
+                    <input type="text" id="accept" name="accept" hidden>
                 </form>
             </div>
         </section>
     </div>
+    <div class="modal fade" id="pdpaConsent" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-warning">
+                    <h5 class="modal-title">Thailand-Personal-Data-Protection-Act (PDPA)</h5>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        &nbsp;&nbsp;&nbsp;TWI provides teaching jobs news alert to you. This
+                        TWI's software application is for applicants, both
+                        foreign workers and Thai workers to fill in their
+                        personal information for purpose of finding teaching
+                        jobs. At the same time TWI will collect, process and
+                        keep your personal data on our Database and use
+                        the information to do marketing, sharing with our
+                        business partners (schools and agencies) for your
+                        benefit and TWI's business interest including finding
+                        and placing jobs for you.
+                        <br><br>
+                        &nbsp;&nbsp;&nbsp;<u>If you allow us to do as
+                            above, pls click "Yes", and then proceed further. If
+                            not, you may click "No" and stop this questionnaire</u>u>
+                    </p>
+                </div>
+                <div class="modal-footer d-flex justify-content-between">
+                    <button style="min-width:200px" type="button" id="accept-btn" class="btn btn-primary">YES</button>
+                    <button style="min-width:200px" type="button" id="denied-btn" class="btn btn-secondary">NO</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <script>
         VANTA.GLOBE({
             el: "body",
-            mouseControls: true,
-            touchControls: true,
-            gyroControls: true,
-            minHeight: 50.00,
-            minWidth: 50.00,
-            scale: 1.00,
-            scaleMobile: 1.00
+            mouseControls: false,
+            touchControls: false,
+            gyroControls: false,
+            // minHeight: 20.00,
+            // minWidth: 20.00,
+            scale: 1.0,
+            scaleMobile: 1.0,
+            size: 0.5,
+            backgroundColor: 0x21252b,
+            color2: 0xc6ccd7,
+
         })
     </script>
     <script>
@@ -147,6 +188,23 @@
                     liff.login();
                 }
             })
+
+            $('#pdpaConsent').modal('show')
+            $('#accept-btn').click(function () {
+                $('#pdpaConsent').modal('hide')
+                $('#accept').val('accept')
+                console.log($('#accept').val())
+            })
+            $('#denied-btn').click(function () {
+                $('#pdpaConsent').modal('hide')
+                $('.container-fluid').remove()
+                Swal.fire({
+                    icon: 'success',
+                    title: 'You have denied to provide your personal data to TWI',
+                    allowOutsideClick: false,
+                    showConfirmButton: false,
+                })
+            })
         })
         $('#regist-form').submit(async function () {
             event.preventDefault()
@@ -155,6 +213,7 @@
             formdata.forEach(function (item) {
                 data[item.name] = item.value
             })
+            console.log("🚀 ~ data", data)
             let isAlert = false
             Object.keys(data).forEach(function (key) {
                 if (data[key] == '' && !isAlert) {
@@ -248,7 +307,6 @@
                                                             "type": "text",
                                                             "text": "Welcome " + profile.displayName,
                                                             "weight": "bold",
-                                                            "color": "#ffffff"
                                                         }
                                                     ],
                                                     "alignItems": "center",
