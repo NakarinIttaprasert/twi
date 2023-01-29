@@ -93,15 +93,19 @@
                         WhatsApp WeChat or Facebook, pls fill "-" in the answer</p>
                     <div class="row justify-content-center">
                         <div class="col-md-4  text-center mt-3">
-                            <label for="name"><span><img alt="icon" src="https://img.icons8.com/fluency-systems-regular/20/ffffff/user.png" /></span> Email *</label>
-                            <input type="text" id="name" name="name" class="form-control">
+                            <label for="email"><span><img alt="icon" src="https://img.icons8.com/fluency-systems-regular/20/ffffff/user.png" /></span> Email *</label>
+                            <input type="text" id="email" name="email" class="form-control">
                         </div>
                         <div class="col-md-4  text-center mt-3">
-                            <label for="lineid"><span></span> Password(Birthdate)</label>
-                            <input type="date" id="lineid" name="lineid" class="form-control">
+                            <label for="password"><span></span> Password(Birthdate) example 01011990</label>
+                            <input type="password" id="password" name="password" class="form-control">
                         </div>
                     </div>
                     <div class="row justify-content-center">
+                        <div class="col-md-4  text-center mt-3">
+                            <label for="lineid"><span></span> Line ID</label>
+                            <input type="text" id="lineid" name="lineid" class="form-control">
+                        </div>
                         <div class="col-md-4  text-center mt-3">
                             <label for="whatsapp"><span><img src="https://img.icons8.com/windows/20/ffffff/whatsapp--v1.png" /></span> WhatsApp</label>
                             <input type="text" id="whatsapp" name="whatsapp" class="form-control">
@@ -182,12 +186,12 @@
     <script>
         var scripturl = 'https://script.google.com/macros/s/AKfycbxHpF8I_PK0WabmuSnx1i7CcuPHtUruzaO2ecaC6SNxDzJeV-nf-XmgVnmbOBmYhpYo/exec'
         $(document).ready(function () {
-            liff.init({ liffId: '1656895429-Krdqqkw8' })
-            liff.ready.then(() => {
-                if (!liff.isLoggedIn()) {
-                    liff.login();
-                }
-            })
+            // liff.init({ liffId: '1656895429-Krdqqkw8' })
+            // liff.ready.then(() => {
+            //     if (!liff.isLoggedIn()) {
+            //         liff.login();
+            //     }
+            // })
 
             $('#pdpaConsent').modal('show')
             $('#accept-btn').click(function () {
