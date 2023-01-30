@@ -265,13 +265,13 @@
                             Swal.fire({
                                 icon: 'error',
                                 title: 'Error',
-                                html: 'Sorry your name is not in our Database. Pls check your full name whether it is the same name as we sent you by email.<br>If you are not yet registered with google form, please register with this link <a href="https://docs.google.com/forms/d/e/1FAIpQLSdY0FcBwfNSe6PZ8A5n1eUZXBoAcgVFxuiWc6AKm6X-8PZvnw/viewform" target="_blank">Registration with google form</a> and then try again.',
+                                html: 'Sorry your name is not in our Database. Pls check your full name whether it is the same name as we sent you by email.<br>If you are not yet registered with google form, please register with this link <a href="https://docs.google.com/forms/d/e/1FAIpQLSezX8ug0N2489kMFQsN6I2d-3E4wXhONecLhDRi_IVoPo8ACw/viewform" target="_blank">Registration with google form</a> and then try again.',
                                 confirmButtonText: 'OK',
                             }).then((result) => {
                                 if (liff.isInClient()) {
                                     liff.closeWindow();
                                 } else {
-                                    window.location.href = 'https://docs.google.com/forms/d/e/1FAIpQLSdY0FcBwfNSe6PZ8A5n1eUZXBoAcgVFxuiWc6AKm6X-8PZvnw/viewform'
+                                    window.location.href = 'https://docs.google.com/forms/d/e/1FAIpQLSezX8ug0N2489kMFQsN6I2d-3E4wXhONecLhDRi_IVoPo8ACw/viewform'
                                 }
                             })
                         }
