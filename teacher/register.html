@@ -97,7 +97,7 @@
                             <input type="email" id="email" name="email" class="form-control">
                         </div>
                         <div class="col-md-4  text-center mt-3">
-                            <label for="password"><span></span> Password(Birthdate)<span class="badge rounded-pill bg-warning"> example 01011990</span></label>
+                            <label for="password"><span></span> Password(Birthdate)&nbsp;&nbsp;<span class="badge rounded-pill bg-warning text-dark"> example 01011990</span></label>
                             <input type="password" id="password" name="password" class="form-control">
                         </div>
                     </div>
@@ -217,8 +217,8 @@
                     icon: 'error',
                     title: 'Please use your Gmail account',
                     allowOutsideClick: false,
-                    showConfirmButton: false,
-                })
+                    confirmButtonText:"OK"
+                }
                 return
             }
             let formdata = $(this).serializeArray()
