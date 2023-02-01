@@ -212,6 +212,15 @@
         })
         $('#regist-form').submit(async function () {
             event.preventDefault()
+            if($('#email').val().indexOf('@gmail.com') <= -1){
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Please use your Gmail account',
+                    allowOutsideClick: false,
+                    showConfirmButton: false,
+                })
+                return
+            }
             let formdata = $(this).serializeArray()
             let data = {}
             formdata.forEach(function (item) {
