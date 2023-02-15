@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous"
+        referrerpolicy="no-referrer"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <title>FORM FOR ALIEN TO NOTIFY OF STAYING LONGER THAN 90 DAYS</title>
+    <style>
+        body {
+            font-family: 'Prompt', sans-serif;
+            background: #f5f5f5;
+
+        }
+
+        .container {
+            max-width: 700px;
+            /* background-color: #; */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- <nav class="navbar bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="navbar-brand"></a>
+                <div class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search File by Email" aria-label="Search">
+                    <button class="btn btn-warning">Search</button>
+                </div>
+            </div>
+        </nav> -->
+        <form id="mainform" class="needs-validation mt-4 rounded" novalidate>
+            <div class="row justify-content-center mt-3 mx-2 rounded p-3 text-bg-primary">
+                <div class="col text-center">
+                    <p class="h3">FORM FOR ALIEN TO NOTIFY OF STAYING LONGER THAN 90 DAYS</p>
+                </div>
+            </div>
+            <div class="row py-3 mx-2 mt-2" id="pdpa-sec">
+                <div class="col-12 alert alert-warning shadow">
+                    <p>
+                        &nbsp;&nbsp;&nbsp;This application form is for Foreign teachers who want to get alert when you have to report for 90 days staying in Thailand to Thai immigration.</p>
+
+                    <p>
+                        &nbsp;&nbsp;&nbsp;You may also print the complete TM47 form after finish this form in order to submit to the immigration.
+                    </p>
+                    <p>
+                        &nbsp;&nbsp;&nbsp;TWI provides this free service for you. TWI may keep your information and use them for TWI and its business partners for marketing purposes. If you agree, pls say "Yes", and proceed further. If not, pls say
+                        "No" and stop the form.
+                    </p>
+                    <div class="row justify-content-between">
+                        <div class="col text-center">
+                            <button class="btn btn-primary" name="pdpa-btn" id="yes-btn" style="min-width: 100px;">YES</button>
+                        </div>
+                        <div class="col text-center">
+                            <button class="btn btn-secondary" name="pdpa-btn" id="no-btn" style="min-width: 100px;">NO</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row justify-content-start g-3 p-3 mx-2 mt-2 rounded mb-5 align-items-end bg-primary-subtle shadow" style="display: none" id="input-sec">
+                <div class="col-md-6">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                    <div class="invalid-feedback">
+                        Please enter your email with gmail account
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label for="fullname">Full name in Block Letters (First, Middle, Last name)</label>
+                    <input type="text" class="form-control" id="fullname" name="fullname" required>
+                    <div class="invalid-feedback">
+                        Please enter your Full name.
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label for="nationality">Nationality (สัญชาติ)</label>
+                    <input type="text" class="form-control" id="nationality" name="nationality" required>
+                    <div class="invalid-feedback">
+                        Please enter your Nationality.
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label for="visa_type">Visa type (ประเภทวีซ่า)</label>
+                    <select name="visa_type" id="visa_type" name="visa_type" class="form-select">
+                        <option value="" disabled selected></option>
+                        <option value="TOURIST">TOURIST</option>
+                        <option value="NON-IMM">NON-IMM</option>
+                    </select>
+                    <div class="invalid-feedback">
+                        Please enter your Visa type.
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label for="report_province">What province that you will report 90 days immigration to? (For instance, Bangkok, Chiangmai, .. etc.,)</label>
+                    <input type="text" class="form-control" id="report_province" name="report_province" required>
+                    <div class="invalid-feedback">
+                        Please enter your the province that you will report 90 days immigration to
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label for="enter_date">What date your last enter Thailand (month, day, year)?</label>
+                    <input type="date" class="form-control" id="enter_date" name="enter_date" required>
+                    <div class="invalid-feedback">
+                        Please enter your the date your last enter Thailand
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label for="transport">By (Transportation type)</label>
+                    <input type="text" id="transport" name="transport" class="form-control" required>
+                    <div class="invalid-feedback">
+                        Please enter your Transportation type
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label for="passport_no">Passport No. (หมายเลขหนังสือเดินทาง)</label>
+                    <input type="text" class="form-control" id="passport_no" name="passport_no" required>
+                    <div class="invalid-feedback">
+                        Please enter your Passport No.
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label for="arrival_card">Arrival Card No. (ตามบัตรขาเข้าเลขที่) Remark: If you don't have the arrival card, keep it blank</label>
+                    <input type="text" class="form-control" id="arrival_card" name="arrival_card">
+
+                </div>
+                <div class="col-md-6">
+                    <label for="address">Present address (For instance xx/xxx )</label>
+                    <input type="text" class="form-control" id="address" name="address" required>
+                    <div class="invalid-feedback">
+                        Please enter your Present address
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label for="road">LANE/ROAD (ซอย/ถนน)</label>
+                    <input type="text" class="form-control" id="road" name="road">
+
+                </div>
+                <div class="col-md-6">
+                    <label for="tambol">TAMBOL (ตำบล)</label>
+                    <input type="text" class="form-control" id="tambol" name="tambol" required>
+                    <div class="invalid-feedback">
+                        Please enter your TAMBOL
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label for="amphur">AMPHUR/DISTRICT (อำเภอ)</label>
+                    <input type="text" class="form-control" id="amphur" name="amphur" required>
+                    <div class="invalid-feedback">
+                        Please enter your AMPHUR/DISTRICT
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label for="province">PROVINCE (จังหวัด)</label>
+                    <input type="text" class="form-control" id="province" name="province" required>
+                    <div class="invalid-feedback">
+                        Please enter your PROVINCE
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label for="phone">PHONE (โทรศัพท์)</label>
+                    <input type="text" class="form-control" id="phone" name="phone" required>
+                    <div class="invalid-feedback">
+                        Please enter your PHONE
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label for="dob">Date of Birth (mm/dd/yyyy)</label>
+                    <input type="date" class="form-control" id="dob" name="dob" required>
+                    <div class="invalid-feedback">
+                        Please enter your Date of Birth
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label for="writen_at">Wrinten At</label>
+                    <input type="text" class="form-control" id="writen_at" name="writen_at" required>
+                    <div class="invalid-feedback">
+                        Please enter your writen address (province)
+                    </div>
+                </div>
+                <div class="col-12 text-center">
+                    <button class="btn btn-primary w-75" type="submit">submit</button>
+                </div>
+            </div>
+            <div class="row  mt-3" id="decline-sec" style="display:none">
+                <div class="col-md-12 text-center">
+                    <h3>
+                        You can close this page now
+                    </h3>
+                </div>
+            </div>
+            <div class="row  mt-3" id="confirm-sec" style="display:none">
+                <div class="col-md-12 text-center">
+                    <h3>
+                        Your form has been submitted successfully
+                    </h3>
+
+                </div>
+                <div class="col-12 text-center">
+                    <a class="btn btn-warning" type="button" id="download-btn">Click to download</a>
+                </div>
+            </div>
+            <input type="text" name="pdpa" hidden>
+        </form>
+    </div>
+    <script src="https://unpkg.com/vconsole@latest/dist/vconsole.min.js"></script>
+    <!-- <script>
+        // VConsole will be exported to `window.VConsole` by default.
+        var vConsole = new window.VConsole();
+    </script> -->
+    <script>
+        var script_url = 'https://script.google.com/macros/s/AKfycbwhX2L9kbUMsS9XyOspf3jc4pC386SGN6eu863CgSCg8RRJZsul14aG1lSf9OT76BBl/exec'
+        $(document).ready(() => {
+            $('[name="pdpa-btn"]').click(function () {
+                event.preventDefault()
+                if ($(this).attr('id') == 'yes-btn') {
+                    $('#pdpa-sec').slideUp(400, function () {
+                        $('#input-sec').slideDown(400);
+                        $('[name="pdpa"]').val('yes');
+                    });
+                } else {
+                    $('#pdpa-sec').slideUp(400, function () {
+                        $('#decline-sec').slideDown(400);
+                    });
+                }
+            })
+        })
+
+        function submitForm() {
+            event.preventDefault()
+            let form = $('#mainform')
+            let obj = {}
+            form.serializeArray().forEach((item) => {
+                obj[item.name] = item.value
+            })
+            // valify email is gmail
+            if (obj.email.split('@')[1] != 'gmail.com') {
+                $('#email').focus()
+                $(form).removeClass('was-validated')
+                return Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Please enter your gmail address',
+                })
+            }
+            Swal.fire({
+                icon: 'info',
+                title: 'Please wait',
+                text: 'We are processing your file',
+                allowOutsideClick: false,
+                allowEscapeKey: false,
+                allowEnterKey: false,
+            })
+            Swal.showLoading(Swal.getConfirmButton())
+            $.ajax({
+                url: script_url,
+                method: "POST",
+                data: obj,
+                success: function (response) {
+                    console.log(response)
+                    if (response.status == 'success') {
+                        Swal.fire({
+                            title: 'Success',
+                            html: 'Your form has been submitted<br><a href="' + response.download_url + '" target="_blank">Click here to download</a>',
+                            icon: 'success',
+                            confirmButtonText: 'OK',
+                            allowOutsideClick: false,
+                        }).then((result) => {
+                            $('#input-sec').slideUp(400, function () {
+                                $('#download-btn').attr('href', response.download_url)
+                                $('#confirm-sec').slideDown(400);
+                            });
+                        })
+                    }
+
+                },
+                error: function (err) {
+                    console.log(err)
+                }
+            });
+            console.log(obj)
+        }
+    </script>
+    <script>
+        (() => {
+            'use strict'
+
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            const forms = document.querySelectorAll('.needs-validation')
+
+            // Loop over them and prevent submission
+            Array.from(forms).forEach(form => {
+                form.addEventListener('submit', event => {
+                    event.preventDefault()
+                    if (!form.checkValidity()) {
+                        event.stopPropagation()
+                        form.classList.add('was-validated')
+                        // go to first invalid element
+                        $('#mainform').find(":invalid").first().focus();
+                    } else {
+                        submitForm()
+                    }
+
+                }, false)
+            })
+        })()
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-loading-overlay@2.1.7/dist/loadingoverlay.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+
+</html>
