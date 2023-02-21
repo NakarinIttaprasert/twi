@@ -29,21 +29,22 @@
 
 <body>
     <div class="container">
-        <!-- <nav class="navbar bg-body-tertiary">
+        <nav class="navbar bg-body-tertiary" style="display:none">
             <div class="container-fluid">
                 <a class="navbar-brand"></a>
-                <div class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search File by Email" aria-label="Search">
-                    <button class="btn btn-warning">Search</button>
+                <div class="d-flex align-items-center" role="search">
+                    <p id="line-name" class="h5"></p>&nbsp;&nbsp;
+                    <img alt="profile" id="line-profile" style="width: 50px" class="rounded-circle border">
                 </div>
             </div>
-        </nav> -->
-        <form id="mainform" class="needs-validation mt-4 rounded" novalidate>
-            <div class="row justify-content-center mt-3 mx-2 rounded p-3 text-bg-primary">
+        </nav>
+        <form id="mainform" class="needs-validation mt-2  h-100 rounded" novalidate>
+            <div class="row justify-content-center mx-2 rounded p-3 text-bg-primary">
                 <div class="col text-center">
                     <p class="h3">FORM FOR ALIEN TO NOTIFY OF STAYING LONGER THAN 90 DAYS</p>
                 </div>
             </div>
+
             <div class="row py-3 mx-2 mt-2" id="pdpa-sec">
                 <div class="col-12 alert alert-warning shadow">
                     <p>
@@ -198,7 +199,7 @@
                     </h3>
                 </div>
             </div>
-            <div class="row  mt-3" id="confirm-sec" style="display:none">
+            <div class="row  mt-3 g-3" id="confirm-sec" style="display:none">
                 <div class="col-md-12 text-center">
                     <h3>
                         Your form has been submitted successfully
@@ -212,36 +213,83 @@
             <input type="text" name="pdpa" hidden>
         </form>
     </div>
+    <div class="container-fluid mt-3">
+        <iframe id="preview" style="width: 100%; display: none;"></iframe>
+    </div>
     <script src="https://unpkg.com/vconsole@latest/dist/vconsole.min.js"></script>
     <!-- <script>
         // VConsole will be exported to `window.VConsole` by default.
         var vConsole = new window.VConsole();
     </script> -->
     <script>
+        var profile, uid
         var script_url = 'https://script.google.com/macros/s/AKfycbwhX2L9kbUMsS9XyOspf3jc4pC386SGN6eu863CgSCg8RRJZsul14aG1lSf9OT76BBl/exec'
+
         $(document).ready(() => {
-            $('[name="pdpa-btn"]').click(function () {
-                event.preventDefault()
-                if ($(this).attr('id') == 'yes-btn') {
-                    $('#pdpa-sec').slideUp(400, function () {
-                        $('#input-sec').slideDown(400);
-                        $('[name="pdpa"]').val('yes');
-                    });
-                } else {
-                    $('#pdpa-sec').slideUp(400, function () {
-                        $('#decline-sec').slideDown(400);
-                    });
-                }
+            $.LoadingOverlay("show");
+            liff.init({
+                liffId: '1655873446-MpmBPPzl',
+                withLoginOnExternalBrowser: true
+            })
+
+            liff.ready.then(async () => {
+                profile = await liff.getProfile()
+                $.LoadingOverlay("hide");
+                uid = liff.getDecodedIDToken().sub
+                getPrefillData(uid)
+                $('#line-name').text(profile.displayName)
+                $('#line-profile').prop('src', profile.pictureUrl)
+                $('.navbar').show(300)
+
+                $('[name="pdpa-btn"]').click(function () {
+                    event.preventDefault()
+                    if ($(this).attr('id') == 'yes-btn') {
+                        $('#pdpa-sec').slideUp(400, function () {
+                            $('#input-sec').slideDown(400);
+                            $('[name="pdpa"]').val('yes');
+                        });
+                    } else {
+                        $('#pdpa-sec').slideUp(400, function () {
+                            $('#decline-sec').slideDown(400);
+                        });
+                    }
+                })
             })
         })
 
-        function submitForm() {
+        function getPrefillData(uid) {
+            $('form').LoadingOverlay("show");
+            $.ajax({
+                url: script_url,
+                data: {
+                    opt: 'getPrefillData',
+                    uid: uid
+                },
+                type: 'GET',
+                dataType: 'json',
+                success: function (res) {
+                    console.log(res)
+                    $('form').LoadingOverlay("hide");
+                    if (res.status == 'success') {
+                        $('#email').val(res.email)
+                        $('#fullname').val(res.name)
+                        $('#passport_no').val(res.passport_no)
+                    }
+                },
+                error: function (err) {
+                    console.log(err)
+                }
+            })
+        }
+
+        async function submitForm() {
             event.preventDefault()
             let form = $('#mainform')
             let obj = {}
             form.serializeArray().forEach((item) => {
                 obj[item.name] = item.value
             })
+            obj['uid'] = uid
             // valify email is gmail
             if (obj.email.split('@')[1] != 'gmail.com') {
                 $('#email').focus()
@@ -270,14 +318,16 @@
                     if (response.status == 'success') {
                         Swal.fire({
                             title: 'Success',
-                            html: 'Your form has been submitted<br><a href="' + response.download_url + '" target="_blank">Click here to download</a>',
+                            html: 'Your form has been submitted',
                             icon: 'success',
-                            confirmButtonText: 'OK',
+                            timer: 2000,
                             allowOutsideClick: false,
                         }).then((result) => {
                             $('#input-sec').slideUp(400, function () {
                                 $('#download-btn').attr('href', response.download_url)
+                                $('#preview').attr('src', response.dataURI).css('height', ($('.container').width()*1.44)+'px').show()
                                 $('#confirm-sec').slideDown(400);
+
                             });
                         })
                     }
@@ -318,6 +368,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-loading-overlay@2.1.7/dist/loadingoverlay.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+
 </body>
 
 </html>
