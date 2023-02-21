@@ -316,19 +316,17 @@
                 success: function (response) {
                     console.log(response)
                     if (response.status == 'success') {
+                        $('#input-sec').slideUp(400, function () {
+                            $('#download-btn').attr('href', response.download_url)
+                            $('#preview').attr('src', response.dataURI).css('height', ($('.container').width() * 1.44) + 'px').show()
+                            $('#confirm-sec').slideDown(400);
+
+                        });
                         Swal.fire({
                             title: 'Success',
-                            html: 'Your form has been submitted',
+                            html: 'Your form has been submitted<br><br>We will send the completed immigration 90 days report form to your email. <br>Pls check it and print from the file in the mail.<br>or you can download it from the button below',
                             icon: 'success',
-                            timer: 2000,
                             allowOutsideClick: false,
-                        }).then((result) => {
-                            $('#input-sec').slideUp(400, function () {
-                                $('#download-btn').attr('href', response.download_url)
-                                $('#preview').attr('src', response.dataURI).css('height', ($('.container').width()*1.44)+'px').show()
-                                $('#confirm-sec').slideDown(400);
-
-                            });
                         })
                     }
 
