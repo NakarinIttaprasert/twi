@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous"
+        referrerpolicy="no-referrer"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <title>FORM FOR ALIEN TO NOTIFY OF STAYING LONGER THAN 90 DAYS</title>
+    <style>
+        body {
+            font-family: 'Prompt', sans-serif;
+            background: #f5f5f5;
+
+        }
+
+        .container {
+            max-width: 700px;
+            /* background-color: #; */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <nav class="navbar bg-body-tertiary" style="display:none">
+            <div class="container-fluid">
+                <a class="navbar-brand"></a>
+                <div class="d-flex align-items-center" role="search">
+                    <p id="line-name" class="h5"></p>&nbsp;&nbsp;
+                    <img alt="profile" id="line-profile" style="width: 50px" class="rounded-circle border">
+                </div>
+            </div>
+        </nav>
+        <form id="mainform" class="needs-validation mt-2  h-100 rounded" novalidate>
+            <div class="row justify-content-center mx-2 rounded p-3 text-bg-primary">
+                <div class="col text-center">
+                    <p class="display-3 text-warning"><i class="bi bi-person-bounding-box"></i></p>
+                    <p class="h3">REFER TEACHER FRIEND</p>
+                </div>
+            </div>
+
+            <div class="row justify-content-start g-3 p-3 mx-2 mt-2 rounded mb-5 align-items-end bg-primary-subtle shadow" id="input-sec">
+                <div class="col-md-6">
+                    <label for="fullname">Full Name</label>
+                    <input type="text" class="form-control" id="fullname" name="fullname" required>
+                    <div class="invalid-feedback">
+                        Please enter your friend's Full name.
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                    <div class="invalid-feedback">
+                        Please enter your friend's email with gmail account
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label for="line">LINE ID</label>
+                    <input type="text" class="form-control" id="line" name="line" required>
+                    <div class="invalid-feedback">
+                        Please enter your friend's line id
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label for="phone">PHONE</label>
+                    <input type="text" class="form-control" id="phone" name="phone" required>
+                    <div class="invalid-feedback">
+                        Please enter your friend's phone number
+                    </div>
+                </div>
+                <div class="col-12 text-center">
+                    <button class="btn btn-primary w-75" type="submit">submit</button>
+                </div>
+            </div>
+            <div class="row  mt-3 g-3" id="confirm-sec" style="display:none">
+                <div class="col-md-12 text-center">
+                    <h3 id="response_text" class="text-center">
+                        Thank you. We sent your new friend an invitation to register with TWI TeacherClub already.
+                    </h3>
+
+                </div>
+            </div>
+            <input type="text" name="pdpa" hidden>
+        </form>
+    </div>
+    <div class="container-fluid mt-3">
+        <iframe id="preview" style="width: 100%; display: none;"></iframe>
+    </div>
+    <script src="https://unpkg.com/vconsole@latest/dist/vconsole.min.js"></script>
+    <!-- <script>
+        // VConsole will be exported to `window.VConsole` by default.
+        var vConsole = new window.VConsole();
+    </script> -->
+    <script>
+        var profile, uid
+        var script_url = 'https://script.google.com/macros/s/AKfycbxHpF8I_PK0WabmuSnx1i7CcuPHtUruzaO2ecaC6SNxDzJeV-nf-XmgVnmbOBmYhpYo/exec'
+
+        $(document).ready(() => {
+            $.LoadingOverlay("show");
+            liff.init({
+                liffId: '1656895429-57Mww9qY',
+                withLoginOnExternalBrowser: true
+            })
+
+            liff.ready.then(async () => {
+                profile = await liff.getProfile()
+                $.LoadingOverlay("hide");
+                uid = liff.getDecodedIDToken().sub
+                $('#line-name').text(profile.displayName)
+                $('#line-profile').prop('src', profile.pictureUrl)
+                $('.navbar').show(300)
+
+            })
+        })
+
+        async function submitForm() {
+            event.preventDefault()
+            let form = $('#mainform')
+            let obj = {}
+            form.serializeArray().forEach((item) => {
+                obj[item.name] = item.value
+            })
+            obj['uid'] = uid
+            obj.opt = 'refer'
+            // valify email is gmail
+            if (obj.email.split('@')[1] != 'gmail.com') {
+                $('#email').focus()
+                $(form).removeClass('was-validated')
+                return Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Please enter gmail account',
+                })
+            }
+            Swal.fire({
+                icon: 'info',
+                title: 'Please wait',
+                text: 'We are checking your friend\'s data',
+                allowOutsideClick: false,
+                allowEscapeKey: false,
+                allowEnterKey: false,
+            })
+            Swal.showLoading(Swal.getConfirmButton())
+            $.ajax({
+                url: script_url,
+                method: "POST",
+                data: obj,
+                success: function (response) {
+                    console.log(response)
+                    $('#input-sec').slideUp(400, function () {
+                        $('#confirm-sec').slideDown(400);
+                    });
+                    if (response.status == 'success') {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Success',
+                            allowOutsideClick: false,
+                            showConfirmButton: false,
+                            timer: 2000
+                        })
+                    }else if(response.status == 'duplicate'){
+                        $('#response_text').html('Your friend already register with us.<br><br>Register Date: ' + response.timestamp +'<br>DoB: XX/XX/'+response.dob+'<br><br>Thank you for your support.')
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            html: 'Your friend already register with us.<br><br>Register Date: ' + response.timestamp + '<br>DoB: XX/XX/' + response.dob +'<br><br>Thank you for your support.',
+                        })
+                    }else if(response.status == 'not regist'){
+                        // $('#response_text').html('You did not register with us yet. Pls do it first<br><br><a class="btn btn-warning btn-lg" id="regist-btn" href="https://nakarinittaprasert.github.io/twi/teacher/register.html">Register Now</a>')
+                        $('#response_text').html('You did not register with us yet. Pls do it first<br><br><a class="btn btn-warning btn-lg" id="regist-btn" href="https://forms.gle/oMfGvq7q6auXXV3m7">Register Now</a>')
+                        //blink button
+                        var blink = setInterval(function () {
+                            $('#regist-btn').fadeOut(500).fadeIn(500);
+                        }, 1000);
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'You is not register with us, Please register first.',
+                        })
+                    }
+
+                },
+                error: function (err) {
+                    console.log(err)
+                }
+            });
+            console.log(obj)
+        }
+    </script>
+    <script>
+        (() => {
+            'use strict'
+
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            const forms = document.querySelectorAll('.needs-validation')
+
+            // Loop over them and prevent submission
+            Array.from(forms).forEach(form => {
+                form.addEventListener('submit', event => {
+                    event.preventDefault()
+                    if (!form.checkValidity()) {
+                        event.stopPropagation()
+                        form.classList.add('was-validated')
+                        // go to first invalid element
+                        $('#mainform').find(":invalid").first().focus();
+                    } else {
+                        submitForm()
+                    }
+
+                }, false)
+            })
+        })()
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-loading-overlay@2.1.7/dist/loadingoverlay.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+
+</body>
+
+</html>
