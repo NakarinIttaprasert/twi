@@ -353,66 +353,71 @@
                 let ele = $(`.${upperkey}`)
                 ele.each(function () {
                     if ($(this).is('input')) {
-                        if(data[upperkey].trim() == '' || data[upperkey].trim() == '-'){
+                        if (data[upperkey].trim() == '' || data[upperkey].trim() == '-') {
                             $(this).val('N/A')
-                        }else{
+                        } else {
                             $(this).val(data[upperkey])
                         }
                     } else if ($(this).is('a')) {
                         console.log(upperkey)
-                        if(upperkey == 'PHONE'){
-                            if(data[key].trim() != '' && data[key].trim() != '-'){
-                                $(this).attr('href', `tel:${data[key]}`).text(data[key])
-                            }else{
+                        if (upperkey == 'AF') {
+                            if (data[upperkey].trim() != '' && data[upperkey].trim() != '-') {
+                                $(this).attr('href', `tel:${data[upperkey]}`).text(data[upperkey])
+                            } else {
                                 $(this).removeAttr('href').html('No Phone Data').addClass('text-muted')
                             }
-                        }else if (upperkey == 'K') {
-                            $(this).attr('href', `mailto:${data[upperkey]}`).text(data[upperkey])
-                        }else if(upperkey == 'W'){
-                            if(data[upperkey].trim() != '' && data[upperkey].trim() != '-'){
+                        } else if (upperkey == 'AE') {
+                            if(data[upperkey].trim() != '' && data[upperkey].trim() != '-') {
+                                $(this).attr('href', `mailto:${data[upperkey]}`).text(data[upperkey])
+                            } else {
+                                $(this).removeAttr('href').html('No Email Data').addClass('text-muted')
+                            }
+                            
+                        } else if (upperkey == 'W') {
+                            if (data[upperkey].trim() != '' && data[upperkey].trim() != '-') {
                                 $(this).attr('href', data[upperkey])
-                            }else{
+                            } else {
                                 $(this).removeAttr('href').html('<i class="bi bi-camera-video"></i> No Video Data').removeClass('btn-info').addClass('btn-secondary')
                             }
-                        } else if(upperkey == 'X'){
-                            if(data[upperkey].trim() != '' && data[upperkey].trim() != '-'){
+                        } else if (upperkey == 'X') {
+                            if (data[upperkey].trim() != '' && data[upperkey].trim() != '-') {
                                 $(this).attr('href', data[upperkey])
-                            }else{
+                            } else {
                                 $(this).removeAttr('href').html('<i class="bi bi-file-earmark-person"></i> No CV Data').removeClass('btn-success').addClass('btn-secondary')
                             }
-                        }else if(upperkey == 'FACEBOOK'){
-                            if(data[key].trim() != '' && data[key].trim() != '-'){
-                                $(this).attr('href', data[key]).text(data[key])
-                            }else{
+                        } else if (upperkey == 'AJ') {
+                            if (data[upperkey].trim() != '' && data[upperkey].trim() != '-') {
+                                $(this).attr('href', data[upperkey]).text(data[upperkey])
+                            } else {
                                 $(this).removeAttr('href').html('No Facebook Data').addClass('text-muted')
                             }
                         }
-                        else if(upperkey == "LINEID"){
-                            if(data[key].trim() != '' && data[key].trim() != '-'){
-                                $(this).attr('href', 'https://line.me/ti/p/'+data[key].toLowerCase()).text(data[key])
-                            }else{
+                        else if (upperkey == "AG") {
+                            if (data[upperkey].trim() != '' && data[upperkey].trim() != '-') {
+                                $(this).attr('href', 'https://line.me/ti/p/' + data[upperkey].toLowerCase()).text(data[upperkey])
+                            } else {
                                 $(this).removeAttr('href').html('No Line Data').addClass('text-muted')
                             }
                         }
-                        else if(upperkey == "WECHAT"){
-                            if(data[key].trim() != '' && data[key].trim() != '-'){
-                                $(this).attr('href', data[key]).text(data[key])
-                            }else{
+                        else if (upperkey == "AH") {
+                            if (data[upperkey].trim() != '' && data[upperkey].trim() != '-') {
+                                $(this).attr('href', data[upperkey]).text(data[upperkey])
+                            } else {
                                 $(this).removeAttr('href').html('No Wechat Data').addClass('text-muted')
                             }
                         }
-                        else if(upperkey == "WHATSAPP"){
-                            if(data[key].trim() != '' && data[key].trim() != '-'){
-                                $(this).attr('href', data[key]).text(data[key])
-                            }else{
+                        else if (upperkey == "AI") {
+                            if (data[upperkey].trim() != '' && data[upperkey].trim() != '-') {
+                                $(this).attr('href', data[upperkey]).text(data[upperkey])
+                            } else {
                                 $(this).removeAttr('href').html('No WhatsApp Data').addClass('text-muted')
                             }
                         }
-                        
+
                         else {
-                            if(data[key].trim() != '' && data[key].trim() != '-'){
-                                $(this).attr('href', data[key]).text(data[key])
-                            }else{
+                            if (data[upperkey].trim() != '' && data[upperkey].trim() != '-') {
+                                $(this).attr('href', data[upperkey]).text(data[upperkey])
+                            } else {
                                 $(this).removeAttr('href').text('No Data').addClass('text-muted')
                             }
                         }
