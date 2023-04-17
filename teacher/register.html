@@ -264,11 +264,13 @@
                                 text: 'This Line Account is already registered.',
                                 confirmButtonText: 'Go to profile page',
                             }).then((result) => {
-                                if (liff.isInClient()) {
-                                    liff.closeWindow();
-                                } else {
-                                    window.location.href = 'https://liff.line.me/1656895429-74ynnk8R'
+                                if(result.isConfirmed){
+                                    liff.openWindow({
+                                        url: 'https://liff.line.me/1656895429-74ynnk8R',
+                                    })
                                 }
+                                // window.location.href = 'https://liff.line.me/1656895429-74ynnk8R'
+
                             })
                         } else if (res == 'notfound') {
                             Swal.fire({
