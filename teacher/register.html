@@ -262,12 +262,12 @@
                                 icon: 'error',
                                 title: 'Error',
                                 text: 'This Line Account is already registered.',
-                                confirmButtonText: 'OK',
+                                confirmButtonText: 'Go to profile page',
                             }).then((result) => {
                                 if (liff.isInClient()) {
                                     liff.closeWindow();
                                 } else {
-                                    window.location.href = 'https://lin.ee/RMVcU7O'
+                                    window.location.href = 'https://liff.line.me/1656895429-74ynnk8R'
                                 }
                             })
                         } else if (res == 'notfound') {
@@ -275,6 +275,19 @@
                                 icon: 'error',
                                 title: 'Error',
                                 html: 'Sorry your email is not in our Database. Pls check your email whether it is the same email as we sent you by email.<br>If you are not yet registered with google form, please register with this link <a href="https://docs.google.com/forms/d/e/1FAIpQLSezX8ug0N2489kMFQsN6I2d-3E4wXhONecLhDRi_IVoPo8ACw/viewform" target="_blank">Registration with google form</a> and then try again.',
+                                confirmButtonText: 'OK',
+                            }).then((result) => {
+                                if (liff.isInClient()) {
+                                    liff.closeWindow();
+                                } else {
+                                    window.location.href = 'https://docs.google.com/forms/d/e/1FAIpQLSezX8ug0N2489kMFQsN6I2d-3E4wXhONecLhDRi_IVoPo8ACw/viewform'
+                                }
+                            })
+                        } else if (res == 'invalid_password') {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Error',
+                                html: 'Sorry your password is incorrect. The password is your birthdate in DDMMYYYY format. You need to use the same birthday as you registered with google form.<br>If you are not yet registered with google form, please register with this link <a href="https://docs.google.com/forms/d/e/1FAIpQLSezX8ug0N2489kMFQsN6I2d-3E4wXhONecLhDRi_IVoPo8ACw/viewform" target="_blank">Registration with google form</a> and then try again.',
                                 confirmButtonText: 'OK',
                             }).then((result) => {
                                 if (liff.isInClient()) {
