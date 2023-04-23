@@ -296,7 +296,7 @@
                             <p class="card-text mb-4">
                                 If you want to make changes to your profile information, please click the link below to fill out our Google Form:
                             </p>
-                            <a class="btn btn-danger" href="https://docs.google.com/forms/d/e/1FAIpQLSdY0FcBwfNSe6PZ8A5n1eUZXBoAcgVFxuiWc6AKm6X-8PZvnw/viewform?usp=sf_link" target="_blank">
+                            <a class="btn btn-danger AK" href="" target="_blank">
                                 <i class="bi bi-pencil-fill me-2"></i>Edit Profile
                             </a>
                         </div>
@@ -411,6 +411,13 @@
                                 $(this).attr('href', data[upperkey]).text(data[upperkey])
                             } else {
                                 $(this).removeAttr('href').html('No WhatsApp Data').addClass('text-muted')
+                            }
+                        }
+                          else if (upperkey == "AK") {
+                            if (data[upperkey].trim() != '' && data[upperkey].trim() != '-') {
+                                $(this).attr('href', data[upperkey]).text(data[upperkey])
+                            } else {
+                                $(this).removeAttr('href').attr('disabled',true)
                             }
                         }
 
